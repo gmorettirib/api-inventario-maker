@@ -9,6 +9,7 @@ class ComponenteSchema(BaseModel):
     nome: str = Field(..., description="Nome do componente")
     quantidade: int = Field(..., ge=0, description="Quantidade em estoque (deve ser maior ou igual a zero)")
     categoria: str = Field(..., description="Categoria do item (ex: Atuadores, Microcontroladores)")
+    estado_conservacao: str = Field(..., description="estado da conversão  ")
 
 # 3. Nosso "Banco de Dados" temporário em memória
 estoque_laboratorio = [
@@ -56,6 +57,7 @@ def atualizar_componente(componente_id: int, dados_atualizados: ComponenteSchema
             item["nome"] = dados_atualizados.nome
             item["quantidade"] = dados_atualizados.quantidade
             item["categoria"] = dados_atualizados.categoria
+            item["estado_conservacao"] = dados_atualizados.estado_conservacao
 
             return {
                 "mensagem": "Componente atualizado com sucesso!",
